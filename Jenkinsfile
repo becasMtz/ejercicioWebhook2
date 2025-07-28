@@ -36,11 +36,13 @@ pipeline {
         }
 
         stage('Push'){
-            //Script de plugin de docker que nos deja manejar accesos de manera más simple
-            script{
-                docker.withRegistry('https://index.docker.io/v1/','docker-hub-credentials')
-                    //docker.image(DOCKER_IMAGE).push() -> en caso de no usarse variable
-                    dockerImage.push('latest')
+            steps{
+                //Script de plugin de docker que nos deja manejar accesos de manera más simple
+                script{
+                    docker.withRegistry('https://index.docker.io/v1/','docker-hub-credentials')
+                        //docker.image(DOCKER_IMAGE).push() -> en caso de no usarse variable
+                        dockerImage.push('latest')
+                }
             }
         }
     }
