@@ -35,23 +35,6 @@ pipeline {
             }
         }
 
-        stage('Approval by Admin') {
-            steps {
-            script {
-                def userInput = input(
-                id: 'adminApproval', message: 'Approve Docker image push?',
-                parameters: [
-                    choice(name: 'Decision', choices: ['Approve', 'Reject'], description: 'Admin decision')
-                ]
-                )
-
-                if (userInput == 'Reject') {
-                error("Image push rejected by administrator.")
-                }
-            }
-            }
-        }
-
         stage('Push'){
             steps{
                 //Script de plugin de docker que nos deja manejar accesos de manera más simple
