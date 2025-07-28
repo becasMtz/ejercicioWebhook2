@@ -27,7 +27,7 @@ pipeline {
                 //Si usamos script predefinido de docker
                 script{
                     //Aqui sí se usa "$" en var porque se esta ejecutando directamente en CMND
-                    bat 'echo $DOCKER_IMAGE'
+                    bat 'echo %DOCKER_IMAGE%'
                     //No se accede a la variable con "$" ya que no se esta ejecutando en el CMD, sino direectamente en ruby porque es parte de la ejecución del pipeline
                     docker.build(DOCKER_IMAGE) 
                 }
