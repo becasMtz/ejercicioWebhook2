@@ -30,8 +30,17 @@ pipeline {
                 //Si usamos script predefinido de docker
                 script{
                     //No se accede a la variable con "$" ya que no se esta ejecutando en el CMD, sino direectamente en ruby porque es parte de la ejecución del pipeline
-                    docker.build(DOCKER_IMAGE) 
+                    dockerImage = docker.build(DOCKER_IMAGE) 
                 }
+            }
+        }
+
+        stage('Push'){
+            //Script de plugin de docker que nos deja manejar accesos de manera más simple
+            script{
+                docker.withRegistry('https://index.docker.io/v1/','docker-hub-credentials')
+                    //docker.image(DOCKER_IMAGE).push() -> en caso de no usarse variable
+                    dockerImage.push('latest')
             }
         }
     }
