@@ -25,7 +25,7 @@ pipeline {
                 bat 'docker build -t becasmtz/jenkinsfileexample . && docker push becasmtz/jenkinsfileexample' */
 
                 //Aqui sí se usa "$" en var porque se esta ejecutando directamente en CMND
-              //  bat 'echo %DOCKER_IMAGE%'
+                bat 'echo %DOCKER_IMAGE%'
 
                 //Si usamos script predefinido de docker
                 script{
