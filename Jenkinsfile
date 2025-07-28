@@ -23,7 +23,7 @@ pipeline {
                 /*Si usaramos instrucción docker
                 bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin'
                 bat 'docker build -t becasmtz/jenkinsfileexample . && docker push becasmtz/jenkinsfileexample' */
-|
+                
                 //Si usamos script predefinido de docker
                 script{
                     //Aqui sí se usa "$" en var porque se esta ejecutando directamente en CMND
