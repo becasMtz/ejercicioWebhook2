@@ -51,7 +51,12 @@ pipeline {
                     bat 'echo "Docker image pushed successfully"'
                 }
                 failure{
-                    bat 'echo "Failed to push Docker image"'
+                    //bat 'echo "Failed to push Docker image"'
+
+                    mail to: 'rmtzbarron@gmail.com',
+                         from: 'rmtzbarron@gmail.com'
+                         subject: "Failed to push Docker image ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                         body: "Failed to push Docker image ${env.JOV_NAME} #${env.BUILD_NUMBER}"
                 }
             }
         }
