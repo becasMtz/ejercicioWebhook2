@@ -53,10 +53,17 @@ pipeline {
                 failure{
                     //bat 'echo "Failed to push Docker image"'
 
-                    mail to: 'rmtzbarron@gmail.com',
-                         from: 'rmtzbarron@gmail.com',
-                         subject: "Failed to push Docker image ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                         body: "Failed to push Docker image ${env.JOV_NAME} #${env.BUILD_NUMBER}"
+                    /*Se accede a una variable local al proceso de jenkins (es accesible cuando se etermina la ejecución de java dentro de jenkins)
+                    para obtener el log de lo que hicimos, permitiendo identificar el error e incluirlo en el correo*/
+                    def logLines = currentBuild.rwaBuild.getLog(100)
+                    def logText = loglines.join('\n')
+
+                    script{
+                        mail to: 'rmtzbarron@gmail.com',
+                            from: 'rmtzbarron@gmail.com',
+                            subject: "Failed to push Docker image ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                            body: "Failed to push Docker image ${env.JOV_NAME} #${env.BUILD_NUMBER}"
+                    }
                 }
             }
         }
