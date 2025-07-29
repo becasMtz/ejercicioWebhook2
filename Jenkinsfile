@@ -69,6 +69,7 @@ pipeline {
         }
     }
 
+/*
     post{
         success{
             script{
@@ -82,5 +83,5 @@ pipeline {
             bat 'echo "Failed to push Docker image"'
         }
 
-    }
+    }*/
 }
