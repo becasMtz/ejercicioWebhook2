@@ -69,4 +69,12 @@ pipeline {
         }
     }
 
+    post{
+        success{
+            mail to: 'rmtzbarron@gmail.com',
+             from: 'rmtzbarron@gmail.com',
+             subject: "Docker image pushed successfully ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+             body: "Docker image pushed successfully ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+        }
+    }
 }
